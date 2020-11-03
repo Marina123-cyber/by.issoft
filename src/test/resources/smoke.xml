@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SuperTestSuite">
+
+<!--    <parameter name="name" value="varvara"></parameter>-->
+<!--    <parameter name="age" value="18"></parameter>-->
+
+    <listeners>
+        <listener class-name="by.issoft.test.MySecondTest"></listener>
+    </listeners>
+
+    <test name="Store Test">
+        <classes>
+            <class name="by.issoft.test.MySecondTest"/>
+        </classes>
+    </test>
+
+</suite>

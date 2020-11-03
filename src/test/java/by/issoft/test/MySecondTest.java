@@ -1,34 +1,46 @@
 package by.issoft.test;
 
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Condition.ownText;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+
 
 public class MySecondTest {
-    @Test
-    public void userCanLoginByUsername() {
+
+    @BeforeMethod
+    protected void beforeTestPrecondition() {
+        System.out.println("Welcome to e-dostavka online store! ");
+    }
+
+
+
+    @Test(dataProvider = "inputProductPrice", dataProviderClass = StoreInputData.class)
+
+    public void eDostavka(String expectedPrice, String actualPriceLocator, String productName) {
+
+
         open("https://e-dostavka.by/");
 
-        $x("//body/div[@id='body']/div[1]/div[3]/div[2]/div[1]/nav[1]/ul[1]/li[10]/a[1]/i[1]").click();
-        $x("//input[@id='searchtext']").setValue("Кофе молотый «Dallmayr» classic, 250 г.");
-        $x("//body/div[@id='body']/div[1]/div[3]/div[2]/div[1]/nav[1]/ul[1]/li[10]/a[1]/i[1]").click();
-        $x("//body/div[@id='body']/div[1]/div[3]/div[3]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/a[1]/img[1]").click();
+        String searchLocator = "//div[@class='main_menu__inner']//i[@class='fa fa-search']";
 
 
-        //if($x("//span[contains(text(),'54.2')]").shouldHave(ownText("54.2")));
-        String price = $x("//span[contains(text(),'54.2')]").getText();
+        $(By.xpath(searchLocator)).click();
 
+        $(By.xpath("//input[@id='searchtext']")).setValue(productName);
 
-        System.out.println("Цена за кг. : " + price);
-        System.out.println("-------------");
+        $(By.xpath(searchLocator)).click();
 
+        $(By.xpath("//a[.='" + productName + "']")).click();
+        String actualPrice = $(By.xpath(actualPriceLocator)).getText();
 
+        Assert.assertEquals(expectedPrice, actualPrice,"The price is different from expected");
 
-
-
-        //ystem.out.println(--------------------);
+        System.out.println("-------------The price is correct!");
 
 
     }
