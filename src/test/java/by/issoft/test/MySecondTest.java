@@ -39,7 +39,7 @@ public class MySecondTest {
 
         $(By.xpath("//a[.='" + productName + "']")).click();
 
-        String actualPriceLocator = "//div[@class = \"right\"]/ul[@class = \"description\"]/li[last()]/span";
+        String actualPriceLocator = "//ul[@class = \"description\"]/li[last()]/span";
 
         String actualPrice = $(By.xpath(actualPriceLocator)).getText();
 

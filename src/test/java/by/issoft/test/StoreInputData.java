@@ -13,11 +13,11 @@ public class StoreInputData {
 
         Object[][] data = new Object[2][2];
 
-        data[0][0] = "8.90";
+        data[0][0] = "7.95";
         data[0][1] = "Конфеты «Сорванец» 200 г.";
 
 
-        data[1][0] = "54.2";;
+        data[1][0] = "52.2";;
         data[1][1] = "Кофе молотый «Dallmayr» classic, 250 г.";
 
 
