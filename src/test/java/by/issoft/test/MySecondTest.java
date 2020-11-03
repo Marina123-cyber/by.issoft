@@ -21,21 +21,26 @@ public class MySecondTest {
 
     @Test(dataProvider = "inputProductPrice", dataProviderClass = StoreInputData.class)
 
-    public void eDostavka(String expectedPrice, String actualPriceLocator, String productName) {
+    public void eDostavka(String expectedPrice, String productName) {
 
 
         open("https://e-dostavka.by/");
 
         String searchLocator = "//div[@class='main_menu__inner']//i[@class='fa fa-search']";
 
-
         $(By.xpath(searchLocator)).click();
+
 
         $(By.xpath("//input[@id='searchtext']")).setValue(productName);
 
+
         $(By.xpath(searchLocator)).click();
 
+
         $(By.xpath("//a[.='" + productName + "']")).click();
+
+        String actualPriceLocator = "//div[@class = \"right\"]/ul[@class = \"description\"]/li[last()]/span";
+
         String actualPrice = $(By.xpath(actualPriceLocator)).getText();
 
         Assert.assertEquals(expectedPrice, actualPrice,"The price is different from expected");
