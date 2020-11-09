@@ -14,8 +14,8 @@ public class NewMailPage {
 
 public void createMail(String address, String subject){
     composeButton.click();
-    $(By.cssSelector(toField)).setValue("address");
-    $(By.cssSelector(subjectField)).setValue("subject");
+    $(By.cssSelector(toField)).setValue(address);
+    $(By.cssSelector(subjectField)).setValue(subject);
     Configuration.timeout = 6000;
     sendButton.click();
 }

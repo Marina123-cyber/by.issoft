@@ -13,9 +13,9 @@ public class LoginPage {
     SelenideElement enterButton = $(By.xpath("//div[@class = 'wrap loginWrap']//input[@class='button loginButton gradientforbutton']"));
 
     public void login(String username, String password){
-        $x(userNameField).setValue("username");
-        $x(passwordField).setValue("password");
+        $x(userNameField).setValue(username);
+        $x(passwordField).setValue(password);
         enterButton.click();
-        Configuration.timeout = 6000;
+        //Configuration.timeout = 6000;
     }
 }

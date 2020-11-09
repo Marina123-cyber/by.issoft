@@ -27,7 +27,6 @@ NewMailPage newMailPage = new NewMailPage();
         newMailPage.createMail(address, subject);
 
 
-
         SelenideElement inboxTab = $(By.xpath("//a[contains(@class, 'ns-view-folder ns-view-id-50')]"));
         inboxTab.click();
 
@@ -38,7 +37,8 @@ NewMailPage newMailPage = new NewMailPage();
 
         Assert.assertEquals(subject, receivedEmailSubject, "Email with given subject is not found");
         System.out.println(22);
+    }
 
 
     }
-}
+
