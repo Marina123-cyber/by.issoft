@@ -15,18 +15,25 @@ public class MailBoxTest {
     LoginPage loginPage = new LoginPage();
     NewMailPage newMailPage = new NewMailPage();
 
-    @Test(dataProvider = "inputMailData", dataProviderClass = MailDataProvider.class)
+    @Test(dataProvider = "sender", dataProviderClass = MailDataProvider.class)
 
-    public void mail(String username, String password, String address, String subject) {
+    public void loginTest(String username, String password) {
 
 
         open("https://mail.tut.by/");
+
         loginPage.login(username, password);
-        newMailPage.waitUntil(appears, 7000);
         Assert.assertTrue(loginPage.loginSuccessful());
 
 
+    }
+
+    @Test(dataProvider = "message", dataProviderClass = MailDataProvider.class)
+
+    public void sendMessageTest(String address, String subject) {
+
         newMailPage.createMail(address, subject);
+
         Assert.assertTrue(newMailPage.letterIsSent());
 
     }

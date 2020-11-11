@@ -1,15 +1,15 @@
 {
   "username": "greedypanda",
   "password": "GreedyP@nd@",
-  "messages":
+  "message":
 [
   {
-    "recipient": "crazylizard@tut.by",
-    "subject": "maple_tree"
+    "address": "crazylizard@tut.by",
+    "subject": "red_setter"
   },
   {
-    "recipient": "greedypanda@tut.by",
-    "subject": "linden_tree"
+    "address": "greedypanda@tut.by",
+    "subject": "german_shepperd"
   }
 ]
 }
