@@ -1,21 +1,28 @@
 package by.issoft.mail;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.appears;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class LoginPage {
-    String userNameField = "//input[@id='Username']";
-    String passwordField = "//input[@id='Password']";
+    SelenideElement userNameField = $(By.xpath("//input[@id='Username']"));
+    SelenideElement passwordField = $(By.xpath("//input[@id='Password']"));
     SelenideElement enterButton = $(By.xpath("//div[@class = 'wrap loginWrap']//input[@class='button loginButton gradientforbutton']"));
+    SelenideElement mailPage = $(By.xpath("//div[@id='js-mail-app']"));
 
-    public void login(String username, String password){
-        $x(userNameField).setValue(username);
-        $x(passwordField).setValue(password);
+    public void login(String username, String password) {
+        userNameField.setValue(username);
+        passwordField.waitUntil(appears, 4000);
+
+        passwordField.setValue(password);
         enterButton.click();
-        //Configuration.timeout = 6000;
+
+    }
+
+    public boolean loginSuccessful() {
+        return mailPage.isDisplayed();
     }
 }

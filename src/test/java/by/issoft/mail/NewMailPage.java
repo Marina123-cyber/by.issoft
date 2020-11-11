@@ -4,20 +4,34 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.appears;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class NewMailPage {
-    SelenideElement composeButton = $(By.xpath("//a[@class = 'mail-ComposeButton js-main-action-compose']"));
-    String toField = "div.tst-field-to .composeYabbles";
-    String subjectField = "[name='subject']";
+    SelenideElement composeButton = $x("//span[@class='mail-ComposeButton-Text']");
+    SelenideElement composeWindow = $x("//div[@class = 'ComposePopup-Content']");
+    SelenideElement toField = $(By.cssSelector("div.tst-field-to .composeYabbles"));
+    SelenideElement subjectField = $(By.cssSelector("[name='subject']"));
     SelenideElement sendButton = $(By.cssSelector(".ComposeControlPanelButton-Button_action"));
+    SelenideElement sentNotification = $(By.xpath("//div[@class = 'ComposeDoneScreen-Title']"));
 
-public void createMail(String address, String subject){
-    composeButton.click();
-    $(By.cssSelector(toField)).setValue(address);
-    $(By.cssSelector(subjectField)).setValue(subject);
-    Configuration.timeout = 6000;
-    sendButton.click();
-}
 
+
+    public void createMail(String address, String subject) {
+        composeButton.click();
+
+        composeWindow.waitUntil(appears, 7000);
+
+        toField.setValue(address);
+
+        subjectField.setValue(subject);
+
+        sendButton.click();
+
+    }
+
+    public boolean letterIsSent() {
+        return sentNotification.isDisplayed();
+    }
 }

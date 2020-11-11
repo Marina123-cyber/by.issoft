@@ -2,8 +2,7 @@ package by.issoft.mail;
 
 import org.testng.annotations.DataProvider;
 
-public class MailData {
-
+public class MailDataProvider {
     @DataProvider
 
     public Object[][] inputMailData() {
