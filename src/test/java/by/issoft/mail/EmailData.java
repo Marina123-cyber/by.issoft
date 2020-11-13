@@ -11,15 +11,5 @@ public class EmailData {
     List<Message> message;
 
 
-    public Object getUsername() {
-        return null;
-    }
 
-    public Object getPassword() {
-        return null;
-    }
-
-    public List getMessage() {
-        return null;
-    }
 }
